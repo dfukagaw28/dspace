@@ -1,0 +1,24 @@
+name: Build Dockerfile and Push Github Package Registry
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-and-push:
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build Image
+      run: docker build .
+
+    ## ここから追加
+    - name: Push to Github Package Registry
+      run: |
+        docker login docker.pkg.github.com -u dfukagaw28 -p ${{ secrets.GH_ACCESS_TOKEN }}
+        docker tag dspace-app docker.pkg.github.com/dfukagaw28/dspace/dspace-app:latest
+        docker push docker.pkg.github.com/dfukagaw28/dspace/dspace-app:latest
