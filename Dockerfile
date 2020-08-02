@@ -20,3 +20,6 @@ RUN set -ex \
   && cd dspace/target/dspace-installer \
   && ant fresh_install \
   && mv /dspace/webapps/* /usr/local/tomcat/webapps/
+
+RUN set -ex \
+  && apt-get install -y --no-install-recommends msmtp
