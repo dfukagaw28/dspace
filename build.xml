@@ -860,6 +860,8 @@ Common usage:
 
         <antcall target="copy_webapps" />
 
+        <antcall target="init_geolite" />
+
         <echo>
 ====================================================================
  The DSpace code has been installed.
